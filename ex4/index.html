@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript 聖誕樹練習</title>
+</head>
+<body>
+    <h1>請開啟開發者工具 (F12) 查看 Console 輸出</h1>
+
+    <script>
+        // 1. 重複字元的輔助函式
+        // n: 重複次數, arg_char: 要重複的字元
+        function repeatchar(n, arg_char) {
+            let result = "";
+            for (let i = 0; i < n; i++) {
+                result += arg_char;
+            }
+            return result;
+        }
+
+        // 2. 畫出樹頂 (葉子部分)
+        function printTreeTop(n) {
+            for (let i = 1; i <= n; i++) {
+                // 空格數量：總層數 - 目前層數
+                let spaces = repeatchar(n - i, ' ');
+                // 星星數量：(目前層數 * 2) - 1  (例如：1, 3, 5, 7...)
+                let stars = repeatchar(2 * i - 1, '*');
+                console.log(`"${spaces}${stars}"`);
+            }
+        }
+
+        // 3. 畫出樹幹
+        function printTreeBottom(n) {
+            // 根據範例圖示，樹幹通常固定輸出三次
+            for (let i = 0; i < 3; i++) {
+                // 樹幹的空格數固定為 n-1，使其對齊第一層的星星
+                let spaces = repeatchar(n - 1, ' ');
+                console.log(`"${spaces}*"`);
+            }
+        }
+
+        // 4. 主函式：組合樹頂與樹幹
+        function tree(n) {
+            printTreeTop(n);
+            printTreeBottom(n);
+        }
+
+        // 執行：畫出一棵 4 層高的聖誕樹
+        tree(4);
+    </script>
+</body>
+</html>
